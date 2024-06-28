@@ -1,0 +1,29 @@
+USEFUL END POINTS/THINGS TO KNOW 
+
+You can filter dates with shortcuts like 'YESTERDAY' or 'TOMORRROW' (e.g. https://api.football-data.org/v4/matches?date=YESTERDAY)
+
+Lots of additions to the person resource. You can now easily retrieve matches filtered by person attributes. For instance all matches for a player that he/she started sitting on the bench (e.g. https://api.football-data.org/v4/persons/12345?lineup=BENCH).
+
+You can paginate most list resources.\
+
+
+
+Domain wording
+A Competition represents a football league (e.g. Premiere League). It is defined by an id, a unique two to four-letter-code and has a type. It consists of Seasons, that hold a number of scheduled fixtures named Match. A certain number of Teams participate in one particular Season of a Competition.
+
+I omitted to implement Season and Matchday as hierarchical elements by purpose. They are only attributes and can be used as Filters, but do not claim a separate resource for themselves to keep the design simple and data structures flat (I cannot emphasize the advantages of flat data structures enough). So you won’t find the typical round of other sports APIs, it doesn’t exist.
+Last but not least a Team has a squad that represents the Persons playing for that very team.
+
+
+const AX-Auth-Token=b57c47994b224d27b99ea4069e4b0b82;
+
+curl -XGET 'https://api.football-data.org/v4/matches/' -H "X-Auth-Token: UR_TOKEN"
+
+
+
+Person / Match	Show all matches for a particular person.	/v4/persons/{id}/matches	dateFrom={DATE}
+dateTo={DATE}
+status={STATUS}
+competitions={competitionIds}
+limit={LIMIT}
+offset={OFFSET}

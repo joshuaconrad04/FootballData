@@ -1,0 +1,69 @@
+
+<%- include("partials/header.ejs") %>
+
+<body>
+
+
+
+
+    <br>
+    <br>
+
+    <form method="POST" action="/getLeagueInfo">
+      <label for="message">Select the league you are looking for(e.g SA for Serie A):</label>
+      <textarea id="message" name="message" required> </textarea>
+     
+      <input type="submit" value="Send">
+        <br>
+
+        <h3>Team Data: </h3>
+        <br>
+        <div id="teamData"> 
+        <% if(locals.teams){ %>
+        <% teams.forEach(team => { %>
+          <p>  <%= team.teamName %> </p>
+        <%  });  %> 
+
+        <% } %>
+
+        <% if(locals.teams){ %>
+          <% teams.forEach(team => { %>
+            <p> <%= team.teamId %> </p>
+          <%  });  %> 
+  
+          <% } %>
+          
+        </div>
+
+
+        <h3>Player Data: </h3>
+        <br>
+        <div id="playerData "> 
+
+      <% if(locals.players){ %>
+            <% players.forEach(player => { %>
+              <p> <%= player.playerName %> </p>
+            <%  });  %> 
+    
+            <% } %>
+
+      <% if(locals.players){ %>
+      <% players.forEach(player => { %>
+           <p> <%= player.playerId%> </p>
+          <%  });  %> 
+      
+              <% } %>
+
+          <br>
+        
+          
+      
+  </form>
+
+
+
+
+  <%- include("partials/footer.ejs") %>
+  
+</body>
+</html>
