@@ -10,57 +10,100 @@
     <br>
 
     <form method="POST" action="/getLeagueInfo">
-      <label for="message">Select the league you are looking for(e.g SA for Serie A):</label>
-      <textarea id="message" name="message" required> </textarea>
-     
+      <label for="league "  style="color: white;"  >Select the league you are looking for: </label>
+      <select id="league " name="league" required>
+          <option value="SA">Serie A </option>
+          <option value="PL">Premier League </option>
+          <option value="PD">La Liga </option>
+          <option value="BL1">Bundesliga </option>
+          <option value="FL1">Ligue 1 </option>
+          <option value="CL"> UEFA Champions League</option>
+          <!-- <option value="ESC">SuperCup </option> -->
+        
+      </select>
       <input type="submit" value="Send">
+  </form>
         <br>
 
-        <h3>Team Data: </h3>
+        <h3>List of Teams: </h3>
         <br>
         <div id="teamData"> 
-        <% if(locals.teams){ %>
-        <% teams.forEach(team => { %>
-          <p>  <%= team.teamName %> </p>
-        <%  });  %> 
-
-        <% } %>
 
         <% if(locals.teams){ %>
-          <% teams.forEach(team => { %>
-            <p> <%= team.teamId %> </p>
-          <%  });  %> 
-  
-          <% } %>
+          <div class="bd-example">
+              <table class="table table-dark table-hover">
+                  <thead>
+                      <tr>
+                          <th scope="col">TeamId</th>
+                          <th scope="col">TeamName</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <% teams.forEach(team => { %>
+                          <tr class="table table-dark table-hover">
+                              <th scope="row"><%= team.teamId %></th>
+                              <td><%= team.teamName %></td>
+                          </tr>
+                      <% }); %>    
+                  </tbody>
+              </table>
+          </div>
+      <% } %>
           
         </div>
 
 
-        <h3>Player Data: </h3>
+        <h3>Players in the league as well as their player Id's: </h3>
         <br>
         <div id="playerData "> 
 
-      <% if(locals.players){ %>
-            <% players.forEach(player => { %>
-              <p> <%= player.playerName %> </p>
-            <%  });  %> 
-    
-            <% } %>
+          <% let playerString="" %>
+          <% if(locals.players){ %>
+            <div class="bd-example">
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">PlayerId</th>
+                            <th scope="col">PlayerName</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% players.forEach(player => { %>
+                            <tr class="table table-dark table-hover">
+                                <th scope="row"><%= player.playerId %></th>
+                                <td><%= `"${player.playerName},"` %></td>
+                            </tr>
+                        <% }); %>    
+                    </tbody>
+                </table>
+            </div>
+        <% } %>
 
-      <% if(locals.players){ %>
-      <% players.forEach(player => { %>
-           <p> <%= player.playerId%> </p>
-          <%  });  %> 
-      
-              <% } %>
-
-          <br>
-        
-          
-      
+          <br>   
   </form>
 
 
+
+  <!-- <div class="bd-example">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">PlayerId</th>
+          <th scope="col">PlayerName</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-active">
+          <th scope="row">1</th> -->
+          <!-- <td>Mark</td>      
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td> 
+        </tr>
+      </tbody>
+    </table>
+  </div> -->
 
 
   <%- include("partials/footer.ejs") %>

@@ -3,12 +3,13 @@
 
 
 <div class="intro" ></div>
-<h1>Welcome to my website where you can look up all time stats in order to compare your favourite players!</h1>
+<h1>Welcome to my website where you can look up current data for your favourite players!</h1>
 
 
 
 <br>
-<h2>In the search bar you can look up your favourite player, press search, and we'll show you interesting all time data for the player</h2> 
+<h2>In the drop down bar you can look up your favourite player, press search, and we'll show you  data for the player. In the future we plan to add a search bar and a larger </h2> 
+
 
 </div>
 
@@ -18,7 +19,7 @@
   <div class="container-fluid">
     <a class="navbar-brand">Search</a>
     <form method="POST" action="/getPlayerData" class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="playername e.g 'Messi'" aria-label="Search">
+      <input class="form-control me-2"  name="playerName" type="search" placeholder="playername e.g 'Messi'" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
   </div>
